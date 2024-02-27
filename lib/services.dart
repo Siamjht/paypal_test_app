@@ -31,7 +31,7 @@ class Services {
   Future<Map<String, String>> createPaypalPayment(
       transactions, accessToken) async {
     try {
-      var response = await http.post(Uri.parse("$domain/v1/payments/payment"),
+      var response = await http.post(Uri.parse("$domain/v1/paymeents/paymnt"),
           body: convert.jsonEncode(transactions),
           headers: {
             "content-type": "application/json",
@@ -78,6 +78,7 @@ class Services {
 
       final body = convert.jsonDecode(response.body);
       if (response.statusCode == 200) {
+        print("Payment Done Successfully: ${response.body}");
         return body["id"];
       }
       return "";
